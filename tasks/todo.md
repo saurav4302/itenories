@@ -8,6 +8,7 @@
 - [x] Keep the activity cleanup behavior intact.
 - [x] Add Google Drive connection, OAuth sign-in, folder creation, and photo upload sync.
 - [x] Keep local browser storage as a fallback when Drive is not connected.
+- [x] Keep the photo dialog centered on phone screens and preserve the Google Client ID in the default configuration.
 
 ## Verify command
 ```text
