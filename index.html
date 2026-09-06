@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goa Family Trip · Sept 10–13, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500..900;1,9..144,400..900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#FAF3E7;
+--bg-soft:#F5E9D4;
+--bg-card:#FFFFFF;
+--text-primary:#1A2B3C;
+--text-secondary:#5C6B7A;
+--text-muted:#8B9AAB;
+--accent:#E76F51;
+--accent-dark:#C75A3F;
+--border:#E8DCC4;
+--shadow-sm:0 2px 8px rgba(26,43,60,.06);
+--shadow-md:0 4px 16px rgba(26,43,60,.08);
+--shadow-lg:0 8px 32px rgba(26,43,60,.12);
+--radius:12px;
+--radius-lg:20px;
+--done:#06A77D;
+--done-bg:#D8F3E5;
+--skip:#F4A261;
+--skip-bg:#FFE9D6;
+--extra:#9D4EDD;
+--extra-bg:#EDD9FF;
+}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:700;letter-spacing:-.02em;font-optical-sizing:auto;font-variation-settings:"SOFT" 30}
+.app{max-width:920px;margin:0 auto;padding:0 16px 120px}
+
+.hero{position:relative;padding:64px 24px 48px;margin-bottom:36px;background:linear-gradient(135deg,#FFE5D9 0%,#FFD6BA 45%,#F8C9B0 100%);border-radius:0 0 32px 32px;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(231,111,81,.25) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-30px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.4) 0%,transparent 70%);border-radius:50%}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero-tag{display:inline-block;font-size:11px;letter-spacing:2.5px;color:var(--accent-dark);font-weight:700;margin-bottom:14px;text-transform:uppercase;background:rgba(255,255,255,.5);padding:6px 12px;border-radius:100px;backdrop-filter:blur(8px)}
+.hero h1{font-size:42px;line-height:1.05;margin-bottom:10px;color:var(--text-primary)}
+.hero-subtitle{color:var(--text-secondary);font-size:16px;font-weight:500}
+
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:28px}
+.stat-card{background:var(--bg-card);border-radius:var(--radius);padding:18px 8px;text-align:center;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:transform .2s}
+.stat-card:hover{transform:translateY(-2px)}
+.stat-value{font-size:30px;font-weight:800;font-family:'Fraunces',serif;line-height:1;margin-bottom:6px}
+.stat-label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted);font-weight:600}
+.stat-done .stat-value{color:var(--done)}
+.stat-pending .stat-value{color:var(--text-primary)}
+.stat-skip .stat-value{color:var(--skip)}
+.stat-extra .stat-value{color:var(--extra)}
+
+.tip{background:rgba(231,111,81,.08);border:1px solid rgba(231,111,81,.2);border-radius:var(--radius);padding:14px 18px;margin-bottom:24px;font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:12px}
+.tip-icon{font-size:18px;flex-shrink:0}
+
+.add-cta{text-align:center;margin-bottom:24px}
+.cta-button{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:white;border:none;padding:14px 28px;border-radius:100px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 6px 16px rgba(231,111,81,.3);transition:all .25s}
+.cta-button:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(231,111,81,.4)}
+.cta-button:active{transform:translateY(0)}
+.cta-icon{font-size:22px;font-weight:300;line-height:1;margin-top:-1px}
+
+.filters{display:flex;gap:8px;margin-bottom:28px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.filter-chip{padding:9px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:600;color:var(--text-secondary);cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit}
+.filter-chip:hover{border-color:var(--accent);color:var(--text-primary)}
+.filter-chip.active{background:var(--text-primary);color:white;border-color:var(--text-primary);box-shadow:var(--shadow-sm)}
+
+.day-card{background:var(--bg-card);border-radius:var(--radius-lg);margin-bottom:24px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--border);transition:box-shadow .2s}
+.day-card:hover{box-shadow:var(--shadow-lg)}
+
+.day-header{padding:24px 26px;background:linear-gradient(135deg,#2A4D5E 0%,#1A2B3C 100%);color:white;position:relative;overflow:hidden}
+.day-header::after{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(231,111,81,.18) 0%,transparent 70%);border-radius:50%}
+.day-header-content{position:relative;z-index:2}
+.day-header h2{font-size:24px;margin-bottom:6px}
+.day-theme{font-size:13px;color:rgba(255,255,255,.75);font-weight:500;letter-spacing:.3px;margin-bottom:14px}
+.day-progress-wrap{display:flex;align-items:center;gap:12px}
+.day-progress{flex:1;height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.day-progress-fill{height:100%;background:linear-gradient(90deg,#E76F51 0%,#F4A261 100%);border-radius:3px;transition:width .4s ease;width:0%}
+.day-progress-text{font-size:12px;color:rgba(255,255,255,.85);font-weight:600;font-variant-numeric:tabular-nums;min-width:50px;text-align:right}
+
+.activities{padding:4px 0}
+.activity{display:flex;gap:16px;padding:16px 26px;border-bottom:1px solid rgba(232,220,196,.5);position:relative;transition:all .2s}
+.activity:last-child{border-bottom:none}
+.activity:hover{background:rgba(231,111,81,.025)}
+.activity::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--type-color,var(--text-muted));transition:width .2s}
+.activity:hover::before{width:6px}
+.activity[data-status="done"]{background:rgba(6,167,125,.04)}
+.activity[data-status="done"] .activity-title{text-decoration:line-through;color:var(--text-secondary)}
+.activity[data-status="done"]::before{background:var(--done)}
+.activity[data-status="skip"]{background:var(--skip-bg)}
+.activity[data-status="skip"]::before{background:var(--skip)}
+
+.activity-checkbox{flex-shrink:0;width:30px;height:30px;border:2px solid #D5C4A1;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;background:var(--bg-card);transition:all .2s;margin-top:2px;font-family:inherit;color:white}
+.activity-checkbox:hover{border-color:var(--done);transform:scale(1.08)}
+.activity[data-status="done"] .activity-checkbox{background:var(--done);border-color:var(--done)}
+.activity-checkbox::after{content:'';display:block;width:8px;height:14px;border:solid white;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);margin-top:-3px;opacity:0;transition:opacity .2s}
+.activity[data-status="done"] .activity-checkbox::after{opacity:1}
+
+.activity-content{flex:1;min-width:0}
+.activity-time-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.activity-time{font-size:13px;font-weight:700;color:var(--text-secondary);font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.activity-type-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:100px;background:var(--type-bg,#E8DCC4);color:var(--type-color,#5C6B7A);font-weight:600;text-transform:capitalize;letter-spacing:.3px}
+.activity-extra-badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;padding:3px 9px;border-radius:100px;background:var(--extra-bg);color:var(--extra);font-weight:700;letter-spacing:.3px}
+.activity-skip-badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;padding:3px 9px;border-radius:100px;background:rgba(244,162,97,.25);color:#C9742E;font-weight:700;letter-spacing:.3px}
+
+.activity-title{font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:4px;line-height:1.3}
+.activity-notes{font-size:13px;color:var(--text-secondary);line-height:1.5}
+.activity-duration{font-size:11px;color:var(--text-muted);margin-left:6px;font-weight:500}
+
+.activity-actions{flex-shrink:0;display:flex;gap:6px;align-items:flex-start}
+.activity-action{background:var(--bg-card);border:1.5px solid var(--border);border-radius:8px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-secondary);transition:all .2s;font-family:inherit;text-decoration:none}
+.activity-action:hover{border-color:var(--accent);color:var(--accent);background:#FFF5F0}
+.activity-action.active{background:var(--skip);color:white;border-color:var(--skip)}
+.activity-action-delete{color:var(--text-muted)}
+.activity-action-delete:hover{border-color:#D62828;color:#D62828;background:#FFE5E5}
+.activity-action-map{color:#0891B2}
+.activity-action-map:hover{border-color:#06AED5;color:white;background:#06AED5}
+
+.fab{position:fixed;bottom:32px;right:32px;width:64px;height:64px;border-radius:50%;background:var(--accent);color:white;border:none;font-size:30px;cursor:pointer;box-shadow:0 8px 24px rgba(231,111,81,.45);transition:all .2s;display:flex;align-items:center;justify-content:center;font-family:inherit;z-index:100;font-weight:300}
+.fab:hover{background:var(--accent-dark);transform:scale(1.08) translateY(-2px);box-shadow:0 12px 32px rgba(231,111,81,.55)}
+.fab:active{transform:scale(.95)}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(26,43,60,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .2s;z-index:200}
+.modal-backdrop.open{opacity:1;pointer-events:auto}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);opacity:0;pointer-events:none;background:var(--bg-card);border-radius:var(--radius-lg);width:90%;max-width:480px;max-height:90vh;overflow-y:auto;display:block;z-index:300;box-shadow:var(--shadow-lg);transition:all .2s}
+.modal.open{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border)}
+.modal-header h2{font-size:22px}
+.modal-close{background:none;border:none;font-size:30px;cursor:pointer;color:var(--text-muted);font-family:inherit;line-height:1;padding:0;width:32px;height:32px;border-radius:8px;transition:all .2s}
+.modal-close:hover{background:var(--bg);color:var(--text-primary)}
+.modal-body{padding:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.modal-body label{display:block;font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.modal-body input,.modal-body select,.modal-body textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;color:var(--text-primary);background:var(--bg-card);transition:all .2s;margin-top:4px}
+.modal-body input:focus,.modal-body select:focus,.modal-body textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(231,111,81,.15)}
+.modal-body textarea{resize:vertical;font-family:inherit;min-height:70px}
+.form-group{margin-bottom:16px}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.btn{padding:11px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;border:none;transition:all .2s}
+.btn-primary{background:var(--accent);color:white}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-secondary{background:var(--bg);color:var(--text-primary)}
+.btn-secondary:hover{background:var(--bg-soft)}
+
+.next-trip-section{background:linear-gradient(135deg,#FFF5E8 0%,#FFE9D6 100%);border-radius:var(--radius-lg);padding:24px 26px;margin-bottom:24px;border:1px solid var(--skip)}
+.next-trip-section h2{font-size:22px;color:#C9742E;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.next-trip-list{display:flex;flex-direction:column;gap:8px}
+.next-trip-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,.7);border-radius:10px;font-size:14px}
+.next-trip-item-day{font-size:11px;font-weight:700;color:var(--skip);text-transform:uppercase;letter-spacing:.5px;background:white;padding:3px 8px;border-radius:6px;flex-shrink:0}
+
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--text-primary);color:white;padding:12px 22px;border-radius:10px;font-size:14px;opacity:0;transition:all .3s;z-index:400;pointer-events:none;font-weight:500;box-shadow:var(--shadow-lg)}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty-state-icon{font-size:48px;margin-bottom:12px;opacity:.5}
+
+@media (max-width:600px){
+.app{padding:0 12px 120px}
+.hero{padding:48px 20px 36px;margin-bottom:28px;border-radius:0 0 24px 24px}
+.hero h1{font-size:32px}
+.hero-subtitle{font-size:14px}
+.stats-grid{grid-template-columns:repeat(5,1fr);gap:6px}
+.stat-card{padding:14px 4px}
+.stat-value{font-size:22px}
+.stat-label{font-size:9px;letter-spacing:.8px}
+.activity{padding:14px 18px;gap:12px}
+.day-header{padding:20px 20px}
+.day-header h2{font-size:20px}
+.activity-title{font-size:15px}
+.activity-actions{flex-direction:column;gap:4px}
+.activity-action{width:30px;height:30px;font-size:12px}
+.fab{bottom:20px;right:20px;width:56px;height:56px;font-size:26px}
+.modal-body{padding:20px}
+.form-row{grid-template-columns:1fr}
+}
+@media print{
+.fab,.filters,.activity-actions,.tip,.add-cta{display:none!important}
+body{background:white}
+.day-card{page-break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+.hero{background:#f5f5f5!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="hero">
+<div class="hero-content">
+<span class="hero-tag">Family Trip · Goa</span>
+<h1>Sept 10 – 13, 2026</h1>
+<p class="hero-subtitle">3 travelers · Pune ⇄ Goa by road · The Falcon Goa → La Grace Resort</p>
+</div>
+</header>
+
+<section class="stats-grid">
+<div class="stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Total</div></div>
+<div class="stat-card stat-done"><div class="stat-value" id="statDone">0</div><div class="stat-label">Done</div></div>
+<div class="stat-card stat-pending"><div class="stat-value" id="statPending">0</div><div class="stat-label">Pending</div></div>
+<div class="stat-card stat-skip"><div class="stat-value" id="statSkip">0</div><div class="stat-label">Next Trip</div></div>
+<div class="stat-card stat-extra"><div class="stat-value" id="statExtra">0</div><div class="stat-label">Added</div></div>
+</section>
+
+<section class="tip">
+<span class="tip-icon">💡</span>
+<span><strong>Tap the circle</strong> to mark something done. <strong>Tap ↻</strong> to save it for next time. <strong>Tap +</strong> below to add a place you visited.</span>
+</section>
+
+<section class="add-cta">
+<button id="addActivityBtnMain" class="cta-button" type="button">
+<span class="cta-icon">+</span>
+<span>Add a Place You Visited</span>
+</button>
+</section>
+
+<section class="filters">
+<button class="filter-chip active" data-filter="all">All</button>
+<button class="filter-chip" data-filter="done">✓ Done</button>
+<button class="filter-chip" data-filter="pending">Pending</button>
+<button class="filter-chip" data-filter="skip">↻ Next Trip</button>
+<button class="filter-chip" data-filter="extra">⭐ My Additions</button>
+</section>
+
+<main class="timeline" id="timeline"></main>
+
+<section class="next-trip-section" id="nextTripSection" style="display:none">
+<h2>📋 Saved for Next Trip</h2>
+<div class="next-trip-list" id="nextTripList"></div>
+</section>
+
+<button class="fab" id="addActivityBtn" title="Add activity">+</button>
+
+<div class="modal-backdrop" id="modalBackdrop"></div>
+<div class="modal" id="addModal" role="dialog" aria-labelledby="modalTitle">
+<div class="modal-header">
+<h2 id="modalTitle">Add Activity</h2>
+<button class="modal-close" id="modalClose" aria-label="Close">×</button>
+</div>
+<form id="addActivityForm" class="modal-body">
+<div class="form-row">
+<div class="form-group" style="margin:0">
+<label for="daySelect">Day</label>
+<select id="daySelect" required></select>
+</div>
+<div class="form-group" style="margin:0">
+<label for="timeInput">Time</label>
+<input type="text" id="timeInput" placeholder="e.g., 2:30 PM" required>
+</div>
+</div>
+<div class="form-group">
+<label for="titleInput">Title</label>
+<input type="text" id="titleInput" placeholder="What did you cover?" required>
+</div>
+<div class="form-group">
+<label for="locationInput">Location <span style="font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0">(for Maps link, optional)</span></label>
+<input type="text" id="locationInput" placeholder="e.g., Infantaria Candolim">
+</div>
+<div class="form-group">
+<label for="typeSelect">Type</label>
+<select id="typeSelect" required>
+<option value="extra">⭐ Extra (your addition)</option>
+<option value="travel">🚗 Travel</option>
+<option value="food">🍽️ Food</option>
+<option value="beach">🏖️ Beach</option>
+<option value="sight">🏛️ Sightseeing</option>
+<option value="market">🛍️ Market</option>
+<option value="sunset">🌅 Sunset</option>
+<option value="relax">🏊 Relax</option>
+<option value="hotel">🏨 Hotel</option>
+</select>
+</div>
+<div class="form-group">
+<label for="notesInput">Notes (optional)</label>
+<textarea id="notesInput" rows="3" placeholder="Anything worth remembering..."></textarea>
+</div>
+<div class="form-actions">
+<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+<button type="submit" class="btn btn-primary">Add to Itinerary</button>
+</div>
+</form>
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script>
+const STORAGE_KEY='goaTripV1';
+
+const TYPES={
+travel:{label:'Travel',icon:'\u{1F697}',color:'#118AB2',bg:'#D6F0F8'},
+hotel:{label:'Hotel',icon:'\u{1F3E8}',color:'#7209B7',bg:'#EBD9FF'},
+food:{label:'Food',icon:'\u{1F374}',color:'#EF476F',bg:'#FCD9E0'},
+beach:{label:'Beach',icon:'\u{1F3D6}️',color:'#06AED5',bg:'#D5F1F8'},
+sight:{label:'Sight',icon:'\u{1F3DB}️',color:'#8D6E63',bg:'#E8DDD3'},
+market:{label:'Market',icon:'\u{1F6CD}️',color:'#D62828',bg:'#FBD9D9'},
+sunset:{label:'Sunset',icon:'\u{1F305}',color:'#FF7B00',bg:'#FFE5CC'},
+relax:{label:'Relax',icon:'\u{1F3CA}',color:'#2A9D8F',bg:'#D5EFEA'},
+extra:{label:'Extra',icon:'⭐',color:'#9D4EDD',bg:'#EDD9FF'}
+};
+
+const PIN='\u{1F4CD}';
+const INITIAL={trip:{title:'Goa Family Trip',startDate:'2026-09-10',endDate:'2026-09-13'},days:[
+{id:'d1',date:'2026-09-10',label:'Thu · Sept 10',theme:'Arrival · Arambol · Chapora',activities:[
+{id:'d1a1',location:'Mapusa KTC Bus Stand Goa',time:'9:30 AM',title:'Bus arrives Mapusa',type:'travel',duration:'~15 min',notes:'Confirm drop point with operator 24 hrs before.',status:'pending'},
+{id:'d1a2',location:'The Falcon Goa Beach Resort Candolim',time:'10:15 AM',title:'Check-in at The Falcon Goa, Candolim',type:'hotel',notes:'Early check-in requested via WhatsApp on Sept 9.',status:'pending'},
+{id:'d1a3',location:'Infantaria Restaurant Candolim',time:'10:45 AM',title:'Brunch at Infantaria',type:'food',duration:'~45 min',notes:'5 min from hotel. Kid-friendly.',status:'pending'},
+{id:'d1a4',location:'Arambol Beach Goa',time:'11:30 AM',title:'Drive to Arambol',type:'travel',duration:'~1 hr 15 min',notes:'Via Mapusa → Arambol Road. Parking ₹50-100 near beach.',status:'pending'},
+{id:'d1a5',location:'Arambol Sweet Lake Goa',time:'12:45 PM',title:'Arambol beach + Sweet Lake',type:'beach',duration:'~1.5 hr',notes:'Walk north end for the freshwater lake meeting the sea — kid loves it.',status:'pending'},
+{id:'d1a6',location:'21 Shack Arambol Goa',time:'2:00 PM',title:'Lunch at beach shack',type:'food',duration:'~1 hr',notes:'Try 21 Shack or Laughing Buddha. Avoid raw seafood.',status:'pending'},
+{id:'d1a7',location:'Arambol Cliff Paragliding Goa',time:'3:00 PM',title:'Arambol cliff viewpoint',type:'sight',duration:'~30 min',notes:'Paragliding area at Paliem. Sunset prep.',status:'pending'},
+{id:'d1a8',location:'Chapora Fort Vagator Goa',time:'3:30 PM',title:'Drive to Chapora Fort',type:'travel',duration:'~45 min',status:'pending'},
+{id:'d1a9',location:'Chapora Fort Goa',time:'4:15 PM',title:'Chapora Fort (Dil Chahta Hai)',type:'sight',duration:'~1 hr',notes:'Climb the whitewashed ramparts. Sea on three sides.',status:'pending'},
+{id:'d1a10',location:'Chapora Fort Goa',time:'5:30 PM',title:'Sunset at Chapora',type:'sunset',duration:'~45 min',notes:'Bring a light layer — gets windy on the cliff.',status:'pending'},
+{id:'d1a11',location:'Candolim Beach Goa',time:'7:00 PM',title:'Drive back to Candolim',type:'travel',duration:'~30 min',status:'pending'},
+{id:'d1a12',location:'Bomras Candolim Goa',time:'7:45 PM',title:'Dinner',type:'food',duration:'~1 hr',notes:"Try Bomra's (Candolim) — reserve earlier, small place.",status:'pending'},
+{id:'d1a13',location:'Calangute Market Square Goa',time:'9:00 PM',title:'Calangute Market Square stroll',type:'market',duration:'~30 min',notes:'5 min cab. Souvenirs, cashews, ice cream. Spend ~₹1.5-2.5K.',status:'pending'}
+]},
+{id:'d2',date:'2026-09-11',label:'Fri · Sept 11',theme:'Mapusa · Old Goa · Ponda · Transfer to South Goa',activities:[
+{id:'d2a1',location:'Mapusa Municipal Market Goa',time:'7:00 AM',title:'Mapusa Friday Market',type:'market',duration:'~45 min',notes:'Cash only. Peak buzz 7-10 AM. Spices, cashews, chorizo, fresh fish.',status:'pending'},
+{id:'d2a2',location:'Basilica of Bom Jesus Old Goa',time:'8:30 AM',title:'Old Goa churches',type:'sight',duration:'~1.5 hr',notes:'Basilica of Bom Jesus + Sé Cathedral. Free entry. Dress modestly.',status:'pending'},
+{id:'d2a3',location:'Fontainhas Panjim Goa',time:'10:30 AM',title:'Walk Fontainhas (Panjim Latin Quarter)',type:'sight',duration:'~30 min',notes:'Colorful Portuguese-era houses. Lots of photo stops.',status:'pending'},
+{id:'d2a4',location:'Sahakari Spice Farm Ponda Goa',time:'11:45 AM',title:'Sahakari Spice Farm tour + buffet lunch',type:'sight',duration:'~2 hr',notes:'Guided tour + lunch buffet. Kid-friendly, mostly shaded.',status:'pending'},
+{id:'d2a5',location:'Butterfly Conservatory of Goa Ponda',time:'2:00 PM',title:'Butterfly Conservatory of Goa',type:'sight',duration:'~30-45 min',notes:'10 min from spice farm. Indoor netted garden. ₹100 entry. Kid magnet.',status:'pending'},
+{id:'d2a6',location:'La Grace Resort West Vado Beach Goa',time:'4:00 PM',title:'Check-in at La Grace Resort',type:'hotel',notes:'West Vado Beach Road. Confirm arrival time via WhatsApp on Sept 9.',status:'pending'},
+{id:'d2a7',location:'La Grace Resort West Vado Goa',time:'4:30 PM',title:'Resort pool',type:'relax',duration:'~1.5 hr',notes:'First recharge after the transfer.',status:'pending'},
+{id:'d2a8',location:'Colva Beach Goa',time:'6:00 PM',title:'Closest beach sunset',type:'sunset',duration:'~45 min',notes:'Depends on which beach La Grace faces (5-15 min walk or short cab).',status:'pending'},
+{id:'d2a9',location:'Martins Corner Betalbatim Goa',time:'7:30 PM',title:"Dinner at Martin's Corner",type:'food',duration:'~1 hr',notes:'Betalbatim. Classic Goan seafood, family favourite. Reserve ahead.',status:'pending'}
+]},
+{id:'d3',date:'2026-09-12',label:'Sat · Sept 12',theme:'Palolem · Resort · Margao Market',activities:[
+{id:'d3a1',location:'Palolem Beach Goa',time:'8:15 AM',title:'Drive to Palolem',type:'travel',duration:'~50 min',notes:'Parking ₹50-100 at main entrance.',status:'pending'},
+{id:'d3a2',location:'Palolem Beach Goa',time:'9:00 AM',title:'Palolem beach',type:'beach',duration:'~3.5 hr',notes:'Calmest, prettiest beach in Goa. Gentle slope, safe for kids.',status:'pending'},
+{id:'d3a3',location:'Jaipur Cafe Palolem Goa',time:'12:30 PM',title:'Lunch at Palolem',type:'food',duration:'~1 hr',notes:'Jaipur Café (veg, kid-friendly) or Magic Italy (shack, kid menu).',status:'pending'},
+{id:'d3a4',location:'La Grace Resort Goa',time:'1:30 PM',title:'Drive back to La Grace',type:'travel',duration:'~50 min',notes:'Kid naps in the car — perfect timing.',status:'pending'},
+{id:'d3a5',location:'La Grace Resort Goa',time:'2:30 PM',title:'Resort pool + rest',type:'relax',duration:'~2.5 hr',notes:'The recharge window. Pure unwind.',status:'pending'},
+{id:'d3a6',location:'Margao Municipal Market Goa',time:'5:45 PM',title:'Margao Municipal Market',type:'market',duration:'~1.5 hr',notes:'Cashews, Feni, chorizo (vacuum-packed), spices, bebinca. Cash preferred.',status:'pending'},
+{id:'d3a7',location:'Magans Restaurant Benaulim Goa',time:'7:30 PM',title:"Dinner at Magan's",type:'food',duration:'~1 hr',notes:'Benaulim. Classic Goan fish thali. Unbeatable local vibe.',status:'pending'},
+{id:'d3a8',location:'La Grace Resort Goa',time:'9:00 PM',title:'Resort beach road stroll',type:'relax',duration:'~15-20 min',notes:'Casual walk, ice cream, settle-in feel.',status:'pending'}
+]},
+{id:'d4',date:'2026-09-13',label:'Sun · Sept 13',theme:'Light day · Bus home',activities:[
+{id:'d4a1',location:'Colva Beach Goa',time:'8:30 AM',title:'Closest beach + last swim',type:'beach',duration:'~1 hr',notes:'One last sand play for your daughter.',status:'pending'},
+{id:'d4a2',location:'La Grace Resort Goa',time:'10:00 AM',title:'Resort pool / Colva walk',type:'relax',duration:'~2.5 hr',notes:'Chill mode. Pack in parallel if needed.',status:'pending'},
+{id:'d4a3',location:'La Grace Resort Goa',time:'12:30 PM',title:'Brunch',type:'food',duration:'~1 hr',notes:'Light meal — you want to eat again before the bus.',status:'pending'},
+{id:'d4a4',location:'La Grace Resort Goa',time:'3:00 PM',title:'Collect luggage + checkout',type:'travel',notes:'Request late checkout (noon-3 PM) when checking in.',status:'pending'},
+{id:'d4a5',location:'Madgaon Goa',time:'5:30 PM',title:'Thar drop-off',type:'travel',duration:'~15 min',notes:'Confirm with rental company — many allow stand/airport drop.',status:'pending'},
+{id:'d4a6',location:'Madgaon KTC Bus Stand Goa',time:'6:00 PM',title:'Cab to Madgaon bus stand',type:'travel',duration:'~15-20 min',notes:'15-20 min from Colva belt. ₹350-500.',status:'pending'},
+{id:'d4a7',location:'Madgaon KTC Bus Stand Goa',time:'6:30 PM',title:'Early dinner near bus stand',type:'food',duration:'~1 hr',notes:'South Indian / veg thali joints nearby. Avoid heavy food before bus.',status:'pending'},
+{id:'d4a8',location:'Madgaon KTC Bus Stand Goa',time:'9:00 PM',title:'Bus departure',type:'travel',notes:'Most sleeper buses board 8:30-9:30 PM. Arrive Pune ~9:30 AM Mon.',status:'pending'}
+]}
+]};
+
+let state=loadState();
+let currentFilter='all';
+
+function migrateLocations(state){
+const known={d1a1:'Mapusa KTC Bus Stand Goa',d1a2:'The Falcon Goa Beach Resort Candolim',d1a3:'Infantaria Restaurant Candolim',d1a4:'Arambol Beach Goa',d1a5:'Arambol Sweet Lake Goa',d1a6:'21 Shack Arambol Goa',d1a7:'Arambol Cliff Paragliding Goa',d1a8:'Chapora Fort Vagator Goa',d1a9:'Chapora Fort Goa',d1a10:'Chapora Fort Goa',d1a11:'Candolim Beach Goa',d1a12:'Bomras Candolim Goa',d1a13:'Calangute Market Square Goa',d2a1:'Mapusa Municipal Market Goa',d2a2:'Basilica of Bom Jesus Old Goa',d2a3:'Fontainhas Panjim Goa',d2a4:'Sahakari Spice Farm Ponda Goa',d2a5:'Butterfly Conservatory of Goa Ponda',d2a6:'La Grace Resort West Vado Beach Goa',d2a7:'La Grace Resort West Vado Goa',d2a8:'Colva Beach Goa',d2a9:'Martins Corner Betalbatim Goa',d3a1:'Palolem Beach Goa',d3a2:'Palolem Beach Goa',d3a3:'Jaipur Cafe Palolem Goa',d3a4:'La Grace Resort Goa',d3a5:'La Grace Resort Goa',d3a6:'Margao Municipal Market Goa',d3a7:'Magans Restaurant Benaulim Goa',d3a8:'La Grace Resort Goa',d4a1:'Colva Beach Goa',d4a2:'La Grace Resort Goa',d4a3:'La Grace Resort Goa',d4a4:'La Grace Resort Goa',d4a5:'Madgaon Goa',d4a6:'Madgaon KTC Bus Stand Goa',d4a7:'Madgaon KTC Bus Stand Goa',d4a8:'Madgaon KTC Bus Stand Goa'};
+let changed=false;
+for(const day of state.days){for(const act of day.activities){if(!act.location&&known[act.id]){act.location=known[act.id];changed=true;}}}
+return changed;
+}
+
+function loadState(){
+try{
+const s=localStorage.getItem(STORAGE_KEY);
+if(s){const p=JSON.parse(s);if(p&&p.days&&Array.isArray(p.days)){if(migrateLocations(p))saveState();return p;}}
+}catch(e){console.warn('Load failed',e)}
+return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState(){
+try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+catch(e){showToast('Could not save (storage full?)');}
+}
+
+function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+function timeToMinutes(t){
+const m=t.match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i);
+if(!m)return 9999;
+let h=parseInt(m[1]);
+const mm=m[2]?parseInt(m[2]):0;
+const ap=m[3]&&m[3].toLowerCase();
+if(ap==='pm'&&h<12)h+=12;
+if(ap==='am'&&h===12)h=0;
+return h*60+mm;
+}
+
+function mapsHref(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);}
+
+function setStatus(actId,dayId,newStatus){
+const day=state.days.find(d=>d.id===dayId);if(!day)return;
+const act=day.activities.find(a=>a.id===actId);if(!act)return;
+act.status=act.status===newStatus?'pending':newStatus;
+saveState();render();
+}
+
+function deleteActivity(actId,dayId){
+if(!confirm('Delete this activity?'))return;
+const day=state.days.find(d=>d.id===dayId);if(!day)return;
+day.activities=day.activities.filter(a=>a.id!==actId);
+saveState();render();showToast('Activity deleted');
+}
+
+function addActivity(data){
+let day=state.days.find(d=>d.id===data.dayId);
+if(!day)return;
+const newAct={
+id:'act-'+Date.now(),
+time:data.time,
+title:data.title,
+type:data.type,
+notes:data.notes||'',
+location:data.location||'',
+duration:'',
+status:'pending',
+isExtra:true
+};
+day.activities.push(newAct);
+day.activities.sort((a,b)=>timeToMinutes(a.time)-timeToMinutes(b.time));
+saveState();render();showToast('Activity added');
+}
+
+function render(){
+renderStats();renderTimeline();renderNextTrip();
+}
+
+function renderStats(){
+let total=0,done=0,pending=0,skip=0,extra=0;
+for(const day of state.days){
+for(const a of day.activities){
+total++;
+if(a.isExtra)extra++;
+if(a.status==='done')done++;
+else if(a.status==='skip')skip++;
+else if(!a.isExtra)pending++;
+}
+}
+document.getElementById('statTotal').textContent=total;
+document.getElementById('statDone').textContent=done;
+document.getElementById('statPending').textContent=pending;
+document.getElementById('statSkip').textContent=skip;
+document.getElementById('statExtra').textContent=extra;
+}
+
+function renderTimeline(){
+const c=document.getElementById('timeline');
+c.innerHTML='';
+const isAll=currentFilter==='all';
+for(const day of state.days){
+const visible=day.activities.filter(a=>{
+if(isAll)return true;
+if(currentFilter==='done')return a.status==='done';
+if(currentFilter==='pending')return a.status==='pending'&&!a.isExtra;
+if(currentFilter==='skip')return a.status==='skip';
+if(currentFilter==='extra')return a.isExtra;
+return true;
+});
+if(!isAll&&visible.length===0)continue;
+const dc=document.createElement('div');
+dc.className='day-card';
+const doneCount=day.activities.filter(a=>a.status==='done').length;
+const progress=day.activities.length>0?(doneCount/day.activities.length)*100:0;
+dc.innerHTML='<div class="day-header"><div class="day-header-content"><h2>'+escapeHtml(day.label)+'</h2><div class="day-theme">'+escapeHtml(day.theme)+'</div><div class="day-progress-wrap"><div class="day-progress"><div class="day-progress-fill" style="width:'+progress+'%"></div></div><div class="day-progress-text">'+doneCount+'/'+day.activities.length+'</div></div></div></div><div class="activities"></div>';
+const list=dc.querySelector('.activities');
+const items=isAll?day.activities:visible;
+for(const a of items)list.appendChild(renderActivity(a,day));
+c.appendChild(dc);
+}
+if(c.children.length===0){
+c.innerHTML='<div class="empty-state"><div class="empty-state-icon">\u{1F50D}</div><div>No activities match this filter.</div></div>';
+}
+}
+
+function renderActivity(a,day){
+const el=document.createElement('div');
+el.className='activity';
+el.dataset.status=a.status;
+el.dataset.type=a.type;
+const ti=TYPES[a.type]||TYPES.sight;
+el.style.setProperty('--type-color',ti.color);
+el.style.setProperty('--type-bg',ti.bg);
+const badges=[];
+if(a.isExtra)badges.push('<span class="activity-extra-badge">⭐ Extra</span>');
+if(a.status==='skip')badges.push('<span class="activity-skip-badge">↻ Next trip</span>');
+let notesHtml=a.notes?'<div class="activity-notes">'+escapeHtml(a.notes)+'</div>':'';
+let durHtml=a.duration?'<span class="activity-duration">· '+escapeHtml(a.duration)+'</span>':'';
+const mapLink=a.location?'<a class="activity-action activity-action-map" href="'+mapsHref(a.location)+'" target="_blank" rel="noopener noreferrer" title="Open in Google Maps">\u{1F4CD}</a>':'';
+el.innerHTML='<div class="activity-checkbox" role="button" tabindex="0" aria-label="Mark done"></div><div class="activity-content"><div class="activity-time-row"><span class="activity-time">'+escapeHtml(a.time)+'</span>'+durHtml+'<span class="activity-type-badge">'+ti.icon+' '+ti.label+'</span>'+badges.join('')+'</div><div class="activity-title">'+escapeHtml(a.title)+'</div>'+notesHtml+'</div><div class="activity-actions">'+mapLink+'<button class="activity-action '+(a.status==='skip'?'active':'')+'" data-action="skip" title="Save for next trip">↻</button>'+(a.isExtra?'<button class="activity-action activity-action-delete" data-action="delete" title="Delete">×</button>':'')+'</div>';
+el.querySelector('.activity-checkbox').addEventListener('click',function(e){e.stopPropagation();setStatus(a.id,day.id,'done');});
+const actionBtns=el.querySelectorAll('[data-action]');
+for(let i=0;i<actionBtns.length;i++){
+const b=actionBtns[i];
+b.addEventListener('click',function(e){e.stopPropagation();const act=b.dataset.action;if(act==='skip')setStatus(a.id,day.id,'skip');else if(act==='delete')deleteActivity(a.id,day.id);});
+}
+return el;
+}
+
+function renderNextTrip(){
+const skipItems=[];
+for(const day of state.days){
+for(const a of day.activities){
+if(a.status==='skip')skipItems.push({day:day,activity:a});
+}
+}
+const section=document.getElementById('nextTripSection');
+const list=document.getElementById('nextTripList');
+if(skipItems.length===0){section.style.display='none';return;}
+section.style.display='block';
+list.innerHTML='';
+for(let i=0;i<skipItems.length;i++){
+const item=skipItems[i];
+const div=document.createElement('div');
+div.className='next-trip-item';
+const dayLabel=item.day.label.split(' · ')[0];
+div.innerHTML='<span class="next-trip-item-day">'+escapeHtml(dayLabel)+'</span><span><strong>'+escapeHtml(item.activity.time)+'</strong> — '+escapeHtml(item.activity.title)+'</span>';
+list.appendChild(div);
+}
+}
+
+function openModal(){
+const sel=document.getElementById('daySelect');
+sel.innerHTML='';
+for(const day of state.days){
+const o=document.createElement('option');
+o.value=day.id;
+o.textContent=day.label;
+sel.appendChild(o);
+}
+document.getElementById('modalBackdrop').classList.add('open');
+document.getElementById('addModal').classList.add('open');
+setTimeout(function(){document.getElementById('titleInput').focus();},100);
+}
+
+function closeModal(){
+document.getElementById('modalBackdrop').classList.remove('open');
+document.getElementById('addModal').classList.remove('open');
+d('addActivityForm').reset();
+}
+
+let toastTimer;
+function showToast(msg){
+const t=document.getElementById('toast');
+t.textContent=msg;
+t.classList.add('show');
+clearTimeout(toastTimer);
+toastTimer=setTimeout(function(){t.classList.remove('show');},2500);
+}
+
+document.getElementById('addActivityBtn').addEventListener('click',openModal);
+document.getElementById('addActivityBtnMain').addEventListener('click',openModal);
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('cancelBtn').addEventListener('click',closeModal);
+document.getElementById('modalBackdrop').addEventListener('click',closeModal);
+
+document.getElementById('addActivityForm').addEventListener('submit',function(e){
+e.preventDefault();
+addActivity({
+dayId:document.getElementById('daySelect').value,
+time:document.getElementById('timeInput').value.trim(),
+title:document.getElementById('titleInput').value.trim(),
+type:document.getElementById('typeSelect').value,
+notes:document.getElementById('notesInput').value.trim(),
+location:document.getElementById('locationInput').value.trim()
+});
+closeModal();
+});
+
+const filterChips=document.querySelectorAll('.filter-chip');
+for(let i=0;i<filterChips.length;i++){
+const c=filterChips[i];
+c.addEventListener('click',function(){
+for(let j=0;j<filterChips.length;j++)filterChips[j].classList.remove('active');
+c.classList.add('active');
+currentFilter=c.dataset.filter;
+render();
+});
+}
+
+document.addEventListener('keydown',function(e){
+if(e.key==='Escape'&&document.getElementById('addModal').classList.contains('open'))closeModal();
+});
+
+render();
+</script>
+</body>
+</html>
+
