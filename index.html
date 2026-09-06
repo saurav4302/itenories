@@ -346,7 +346,6 @@ body{background:white}
 <nav class="main-nav">
 <button class="nav-tab active" data-page="itinerary"><span>📅</span><span>Itinerary</span></button>
 <button class="nav-tab" data-page="budget"><span>💰</span><span>Budget</span></button>
-<button class="nav-tab" data-page="photos"><span>📸</span><span>Photos</span></button>
 </nav>
 
 <section id="page-itinerary" class="page active">
@@ -409,19 +408,6 @@ body{background:white}
 <div class="expenses-by-day" id="expensesByDay"></div>
 <button class="add-expense-btn" id="addExpenseBtn" type="button"><span style="font-size:18px;line-height:1">+</span> Log an Expense</button>
 </section>
-</section>
-
-<section id="page-photos" class="page">
-<div class="photos-section-intro">
-<h2>📸 Trip memories</h2>
-<p>Add photos from any itinerary stop. Each photo is linked to its place and can be opened in Maps.</p>
-</div>
-<div class="drive-sync-card">
-<div class="drive-sync-icon">☁️</div>
-<div class="drive-sync-content"><h3>Google Drive backup</h3><p id="driveStatus">Not connected. Photos still stay safely in this browser.</p></div>
-<div class="drive-sync-actions"><button class="drive-connect" id="driveConnectBtn" type="button">Connect Google Drive</button><button class="drive-disconnect" id="driveDisconnectBtn" type="button" style="display:none">Disconnect</button></div>
-</div>
-<div class="photo-gallery" id="photoGallery"></div>
 </section>
 
 <div class="modal-backdrop" id="expenseModalBackdrop"></div>
@@ -501,28 +487,6 @@ body{background:white}
 <button type="submit" class="btn btn-primary">Add to Itinerary</button>
 </div>
 </form>
-</div>
-
-<div class="modal-backdrop" id="photoModalBackdrop"></div>
-<div class="modal photo-modal" id="photoModal" role="dialog" aria-labelledby="photoModalTitle">
-<div class="photo-modal-head">
-<div><h3 id="photoModalTitle">Add a photo</h3><p id="photoModalSubtitle"></p></div>
-<button class="photo-modal-close" id="photoModalClose" aria-label="Close">×</button>
-</div>
-<div class="modal-body" id="photoModalBody"></div>
-</div>
-
-<div class="lightbox" id="lightbox" style="display:none" role="dialog" aria-modal="true" aria-label="Trip photo viewer">
-<button class="lightbox-close" id="lightboxClose" aria-label="Close photo">×</button>
-<button class="lightbox-prev" id="lightboxPrev" aria-label="Previous photo">‹</button>
-<div class="lightbox-img-wrap"><img id="lightboxImg" alt="Trip memory"></div>
-<button class="lightbox-next" id="lightboxNext" aria-label="Next photo">›</button>
-<div class="lightbox-info">
-<div class="lightbox-caption" id="lightboxCaption"></div>
-<div class="lightbox-activity" id="lightboxActivity"></div>
-<span class="lightbox-time" id="lightboxTime"></span>
-<button class="lightbox-delete-btn" id="lightboxDelete" type="button">Delete photo</button>
-</div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -641,9 +605,6 @@ async function uploadPhotoToDrive(blob,caption,location){const folderId=await ge
 async function syncPhotoToDrive(blob,caption,location){if(!driveConnected()&&!await refreshGoogleToken())return null;try{return await uploadPhotoToDrive(blob,caption,location);}catch(error){return null;}}
 async function disconnectGoogleDrive(){driveAccessToken='';driveRefreshToken='';driveTokenExpiry=0;localStorage.removeItem('goaDriveAccessToken');localStorage.removeItem('goaDriveRefreshToken');localStorage.removeItem('goaDriveTokenExpiry');updateDriveUI();showToast('Google Drive disconnected');}
 
-updateDriveUI();
-handleGoogleCallback().catch(function(error){console.error('Google sign-in failed',error);showToast(error.message||'Could not finish Google sign-in');});
-document.getElementById('driveConnectBtn').addEventListener('click',startGoogleAuth);
 document.getElementById('driveDisconnectBtn').addEventListener('click',disconnectGoogleDrive);
 
 function renderPhotosGallery(){
@@ -673,13 +634,6 @@ function closeLightbox(){document.getElementById('lightbox').style.display='none
 function lightboxPrev(){if(!lightboxPhotos.length)return;lightboxIndex=(lightboxIndex-1+lightboxPhotos.length)%lightboxPhotos.length;showLightboxPhoto();}
 function lightboxNext(){if(!lightboxPhotos.length)return;lightboxIndex=(lightboxIndex+1)%lightboxPhotos.length;showLightboxPhoto();}
 
-document.getElementById('photoModalClose').addEventListener('click',closePhotoModal);
-document.getElementById('photoModalBackdrop').addEventListener('click',closePhotoModal);
-document.getElementById('lightboxClose').addEventListener('click',closeLightbox);
-document.getElementById('lightboxPrev').addEventListener('click',lightboxPrev);
-document.getElementById('lightboxNext').addEventListener('click',lightboxNext);
-document.getElementById('lightboxDelete').addEventListener('click',async function(){if(!lightboxPhotos.length)return;const photo=lightboxPhotos[lightboxIndex];await deletePhotoById(photo.id);closeLightbox();await refreshPhotos();showToast('Photo deleted');});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(document.getElementById('lightbox').style.display==='flex')closeLightbox();else if(document.getElementById('photoModal').classList.contains('open'))closePhotoModal();}if(e.key==='ArrowLeft'&&document.getElementById('lightbox').style.display==='flex')lightboxPrev();if(e.key==='ArrowRight'&&document.getElementById('lightbox').style.display==='flex')lightboxNext();});
 let currentFilter='all';
 
 function migrateState(state){
@@ -859,7 +813,7 @@ saveState();render();showToast('Activity added');
 }
 
 function render(){
-renderStats();renderTimeline();renderNextTrip();renderBudget();renderPhotosGallery();
+renderStats();renderTimeline();renderNextTrip();renderBudget();
 }
 
 function renderStats(){
@@ -923,13 +877,12 @@ if(a.status==='skip')badges.push('<span class="activity-skip-badge">↻ Next tri
 let notesHtml=a.notes?'<div class="activity-notes">'+escapeHtml(a.notes)+'</div>':'';
 let durHtml=a.duration?'<span class="activity-duration">· '+escapeHtml(a.duration)+'</span>':'';
 const mapLink=a.location?'<a class="activity-action activity-action-map" href="'+mapsHref(a.location)+'" target="_blank" rel="noopener noreferrer" title="Open in Google Maps">\u{1F4CD}</a>':'';
-const photoCount=photoCounts[a.id]||0;
-el.innerHTML='<div class="activity-checkbox" role="button" tabindex="0" aria-label="Mark done"></div><div class="activity-content"><div class="activity-time-row"><span class="activity-time">'+escapeHtml(a.time)+'</span>'+durHtml+'<span class="activity-type-badge">'+ti.icon+' '+ti.label+'</span>'+badges.join('')+'</div><div class="activity-title">'+escapeHtml(a.title)+'</div>'+notesHtml+'</div><div class="activity-actions">'+mapLink+'<button class="activity-action activity-action-photo '+(photoCount?'has-photos':'')+'" data-action="photo" title="'+(photoCount?'View or add photos':'Take or add a photo')+'" aria-label="'+(photoCount?'View or add photos':'Take or add a photo')+'">📷'+(photoCount?'<sup>'+photoCount+'</sup>':'')+'</button><button class="activity-action '+(a.status==='skip'?'active':'')+'" data-action="skip" title="Save for next trip">↻</button>'+(a.isExtra?'<button class="activity-action activity-action-delete" data-action="delete" title="Delete">×</button>':'')+'</div>';
+el.innerHTML='<div class="activity-checkbox" role="button" tabindex="0" aria-label="Mark done"></div><div class="activity-content"><div class="activity-time-row"><span class="activity-time">'+escapeHtml(a.time)+'</span>'+durHtml+'<span class="activity-type-badge">'+ti.icon+' '+ti.label+'</span>'+badges.join('')+'</div><div class="activity-title">'+escapeHtml(a.title)+'</div>'+notesHtml+'</div><div class="activity-actions">'+mapLink+'<button class="activity-action '+(a.status==='skip'?'active':'')+'" data-action="skip" title="Save for next trip">↻</button>'+(a.isExtra?'<button class="activity-action activity-action-delete" data-action="delete" title="Delete">×</button>':'')+'</div>';
 el.querySelector('.activity-checkbox').addEventListener('click',function(e){e.stopPropagation();setStatus(a.id,day.id,'done');});
 const actionBtns=el.querySelectorAll('[data-action]');
 for(let i=0;i<actionBtns.length;i++){
 const b=actionBtns[i];
-b.addEventListener('click',function(e){e.stopPropagation();const act=b.dataset.action;if(act==='skip')setStatus(a.id,day.id,'skip');else if(act==='delete')deleteActivity(a.id,day.id);else if(act==='photo')openPhotoModal(a.id);});
+b.addEventListener('click',function(e){e.stopPropagation();const act=b.dataset.action;if(act==='skip')setStatus(a.id,day.id,'skip');else if(act==='delete')deleteActivity(a.id,day.id);});
 }
 return el;
 }
@@ -1067,7 +1020,6 @@ document.getElementById('addActivityBtn').addEventListener('click',function(){
 if(currentPage==='budget')openExpenseModal();else openModal();
 });
 
-openPhotoDB().then(refreshPhotos).catch(function(){renderPhotosGallery();});
 render();
 </script>
 </body>
