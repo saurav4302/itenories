@@ -605,8 +605,6 @@ async function uploadPhotoToDrive(blob,caption,location){const folderId=await ge
 async function syncPhotoToDrive(blob,caption,location){if(!driveConnected()&&!await refreshGoogleToken())return null;try{return await uploadPhotoToDrive(blob,caption,location);}catch(error){return null;}}
 async function disconnectGoogleDrive(){driveAccessToken='';driveRefreshToken='';driveTokenExpiry=0;localStorage.removeItem('goaDriveAccessToken');localStorage.removeItem('goaDriveRefreshToken');localStorage.removeItem('goaDriveTokenExpiry');updateDriveUI();showToast('Google Drive disconnected');}
 
-document.getElementById('driveDisconnectBtn').addEventListener('click',disconnectGoogleDrive);
-
 function renderPhotosGallery(){
 const gallery=document.getElementById('photoGallery');if(!gallery)return;
 if(!allPhotos.length){gallery.innerHTML='<div class="photo-empty"><div class="photo-empty-icon">📷</div><div class="photo-empty-text">Your trip memories will appear here. Tap the camera button beside an itinerary place to take or add a photo.</div></div>';return;}
@@ -648,7 +646,7 @@ return changed;
 function loadState(){
 try{
 const s=localStorage.getItem(STORAGE_KEY);
-if(s){const p=JSON.parse(s);if(p&&p.days&&Array.isArray(p.days)){if(migrateState(p))saveState();return p;}}
+if(s){const p=JSON.parse(s);if(p&&Array.isArray(p.days)&&p.days.some(day=>Array.isArray(day.activities)&&day.activities.length)){if(migrateState(p))saveState();return p;}}
 }catch(e){console.warn('Load failed',e)}
 return JSON.parse(JSON.stringify(INITIAL));
 }
