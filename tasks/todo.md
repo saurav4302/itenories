@@ -21,3 +21,4 @@ awk '/<script>/,/<\/script>/' "/Users/binarybrain/Documents/ChatGPT/Trip To GOA/
 - Feature checks passed: Photos navigation, photo page, camera input, IndexedDB storage, photo gallery, Save to phone, and itinerary photo buttons.
 - Drive checks passed: Drive status card, OAuth PKCE flow, Drive folder creation, Drive upload API, local fallback, and location metadata.
 - Live browser check reached the deployed Photos page, Google account chooser, and the standard Testing-app warning with the configured Drive Client ID and redirect URI.
+- Replanned itinerary now uses Skyi Songbirds → Lotus Sutra/Arambol for Sept 10–12 → The Nautical Nest/Palolem for Sept 12–14 → direct South Goa-to-Pune drive on Sept 14.

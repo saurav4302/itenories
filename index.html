@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Goa Family Trip · Sept 10–13, 2026</title>
+<title>Goa Family Trip · Sept 10–14, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500..900;1,9..144,400..900&display=swap" rel="stylesheet">
@@ -338,8 +338,8 @@ body{background:white}
 <header class="hero">
 <div class="hero-content">
 <span class="hero-tag">Family Trip · Goa</span>
-<h1>Sept 10 – 13, 2026</h1>
-<p class="hero-subtitle">3 travelers · Pune ⇄ Goa by road · The Falcon Goa → La Grace Resort</p>
+<h1>Sept 10 – 14, 2026</h1>
+<p class="hero-subtitle">3 travelers · Pune ⇄ Goa by road · Skyi Songbirds → Lotus Sutra → The Nautical Nest</p>
 </div>
 </header>
 
@@ -509,52 +509,56 @@ extra:{label:'Extra',icon:'⭐',color:'#9D4EDD',bg:'#EDD9FF'}
 };
 
 const PIN='\u{1F4CD}';
-const INITIAL={trip:{title:'Goa Family Trip',startDate:'2026-09-10',endDate:'2026-09-13'},days:[
-{id:'d1',date:'2026-09-10',label:'Thu · Sept 10',theme:'Arrival · Arambol · Chapora',activities:[
-{id:'d1a1',location:'Mapusa KTC Bus Stand Goa',time:'9:30 AM',title:'Bus arrives Mapusa',type:'travel',duration:'~15 min',notes:'Confirm drop point with operator 24 hrs before.',status:'pending'},
-{id:'d1a2',location:'The Falcon Goa Beach Resort Candolim',time:'10:15 AM',title:'Check-in at The Falcon Goa, Candolim',type:'hotel',notes:'Early check-in requested via WhatsApp on Sept 9.',status:'pending'},
-{id:'d1a3',location:'Infantaria Restaurant Candolim',time:'10:45 AM',title:'Brunch at Infantaria',type:'food',duration:'~45 min',notes:'5 min from hotel. Kid-friendly.',status:'pending'},
-{id:'d1a4',location:'Arambol Beach Goa',time:'11:30 AM',title:'Drive to Arambol',type:'travel',duration:'~1 hr 15 min',notes:'Via Mapusa → Arambol Road. Parking ₹50-100 near beach.',status:'pending'},
-{id:'d1a5',location:'Arambol Sweet Lake Goa',time:'12:45 PM',title:'Arambol beach + Sweet Lake',type:'beach',duration:'~1.5 hr',notes:'Walk north end for the freshwater lake meeting the sea — kid loves it.',status:'pending'},
-{id:'d1a6',location:'21 Shack Arambol Goa',time:'2:00 PM',title:'Lunch at beach shack',type:'food',duration:'~1 hr',notes:'Try 21 Shack or Laughing Buddha. Avoid raw seafood.',status:'pending'},
-{id:'d1a7',location:'Arambol Cliff Paragliding Goa',time:'3:00 PM',title:'Arambol cliff viewpoint',type:'sight',duration:'~30 min',notes:'Paragliding area at Paliem. Sunset prep.',status:'pending'},
-{id:'d1a8',location:'Chapora Fort Vagator Goa',time:'3:30 PM',title:'Drive to Chapora Fort',type:'travel',duration:'~45 min',status:'pending'},
-{id:'d1a9',location:'Chapora Fort Goa',time:'4:15 PM',title:'Chapora Fort (Dil Chahta Hai)',type:'sight',duration:'~1 hr',notes:'Climb the whitewashed ramparts. Sea on three sides.',status:'pending'},
-{id:'d1a10',location:'Chapora Fort Goa',time:'5:30 PM',title:'Sunset at Chapora',type:'sunset',duration:'~45 min',notes:'Bring a light layer — gets windy on the cliff.',status:'pending'},
-{id:'d1a11',location:'Candolim Beach Goa',time:'7:00 PM',title:'Drive back to Candolim',type:'travel',duration:'~30 min',status:'pending'},
-{id:'d1a12',location:'Bomras Candolim Goa',time:'7:45 PM',title:'Dinner',type:'food',duration:'~1 hr',notes:"Try Bomra's (Candolim) — reserve earlier, small place.",status:'pending'},
-{id:'d1a13',location:'Calangute Market Square Goa',time:'9:00 PM',title:'Calangute Market Square stroll',type:'market',duration:'~30 min',notes:'5 min cab. Souvenirs, cashews, ice cream. Spend ~₹1.5-2.5K.',status:'pending'}
+const INITIAL={planVersion:2,trip:{title:'Goa Family Trip',startDate:'2026-09-10',endDate:'2026-09-14'},days:[
+{id:'d1',date:'2026-09-10',label:'Thu · Sept 10',theme:'Pune → Arambol · Lotus Sutra',activities:[
+{id:'d1a1',location:'Skyi Songbirds Bhugaon Pune',time:'3:00 AM',title:'Leave from Skyi Songbirds, Bhugaon',type:'travel',duration:'~8-9 hr',notes:'Kia Seltos. Take breaks for your daughter; avoid rushing.',status:'pending'},
+{id:'d1a2',location:'Pune to Belgaum highway',time:'6:30 AM',title:'Breakfast + rest break',type:'food',duration:'~30 min',notes:'Stop somewhere clean and family-friendly. Let your daughter stretch.',status:'pending'},
+{id:'d1a3',location:'Goa Maharashtra border',time:'10:30 AM',title:'Short break near the Goa border',type:'food',duration:'~20 min',notes:'Fuel check, water, washroom, and a quick stretch.',status:'pending'},
+{id:'d1a4',location:'Lotus Sutra Beachfront Resort Arambol Goa',time:'12:00 PM',title:'Check-in at Lotus Sutra Beachfront Resort',type:'hotel',duration:'~1 hr',notes:'Check-in on September 10. Request early check-in if needed.',status:'pending'},
+{id:'d1a5',location:'Arambol Beach Goa',time:'1:30 PM',title:'Lunch near Arambol Beach',type:'food',duration:'~1 hr',notes:'Choose a clean beach shack; keep the first visit relaxed.',status:'pending'},
+{id:'d1a6',location:'Arambol Sweet Lake Goa',time:'2:30 PM',title:'Arambol Beach + Sweet Lake',type:'beach',duration:'~2 hr',notes:'Easy beach time. Walk toward the freshwater lake at the quieter end.',status:'pending'},
+{id:'d1a7',location:'Arambol Cliff Paragliding Goa',time:'5:00 PM',title:'Arambol cliff viewpoint',type:'sight',duration:'~45 min',notes:'Keep the visit short and stay back from the cliff edge.',status:'pending'},
+{id:'d1a8',location:'Lotus Sutra Beachfront Resort Arambol Goa',time:'6:30 PM',title:'Sunset + resort time',type:'sunset',duration:'~1 hr',notes:'Return to the resort and let your daughter rest.',status:'pending'},
+{id:'d1a9',location:'Arambol Beach Goa',time:'7:30 PM',title:'Dinner near the resort',type:'food',duration:'~1 hr',notes:'Keep dinner nearby; do not add a long evening drive.',status:'pending'}
 ]},
-{id:'d2',date:'2026-09-11',label:'Fri · Sept 11',theme:'Mapusa · Old Goa · Ponda · Transfer to South Goa',activities:[
-{id:'d2a1',location:'Mapusa Municipal Market Goa',time:'7:00 AM',title:'Mapusa Friday Market',type:'market',duration:'~45 min',notes:'Cash only. Peak buzz 7-10 AM. Spices, cashews, chorizo, fresh fish.',status:'pending'},
-{id:'d2a2',location:'Basilica of Bom Jesus Old Goa',time:'8:30 AM',title:'Old Goa churches',type:'sight',duration:'~1.5 hr',notes:'Basilica of Bom Jesus + Sé Cathedral. Free entry. Dress modestly.',status:'pending'},
-{id:'d2a3',location:'Fontainhas Panjim Goa',time:'10:30 AM',title:'Walk Fontainhas (Panjim Latin Quarter)',type:'sight',duration:'~30 min',notes:'Colorful Portuguese-era houses. Lots of photo stops.',status:'pending'},
-{id:'d2a4',location:'Sahakari Spice Farm Ponda Goa',time:'11:45 AM',title:'Sahakari Spice Farm tour + buffet lunch',type:'sight',duration:'~2 hr',notes:'Guided tour + lunch buffet. Kid-friendly, mostly shaded.',status:'pending'},
-{id:'d2a5',location:'Butterfly Conservatory of Goa Ponda',time:'2:00 PM',title:'Butterfly Conservatory of Goa',type:'sight',duration:'~30-45 min',notes:'10 min from spice farm. Indoor netted garden. ₹100 entry. Kid magnet.',status:'pending'},
-{id:'d2a6',location:'La Grace Resort West Vado Beach Goa',time:'4:00 PM',title:'Check-in at La Grace Resort',type:'hotel',notes:'West Vado Beach Road. Confirm arrival time via WhatsApp on Sept 9.',status:'pending'},
-{id:'d2a7',location:'La Grace Resort West Vado Goa',time:'4:30 PM',title:'Resort pool',type:'relax',duration:'~1.5 hr',notes:'First recharge after the transfer.',status:'pending'},
-{id:'d2a8',location:'Colva Beach Goa',time:'6:00 PM',title:'Closest beach sunset',type:'sunset',duration:'~45 min',notes:'Depends on which beach La Grace faces (5-15 min walk or short cab).',status:'pending'},
-{id:'d2a9',location:'Martins Corner Betalbatim Goa',time:'7:30 PM',title:"Dinner at Martin's Corner",type:'food',duration:'~1 hr',notes:'Betalbatim. Classic Goan seafood, family favourite. Reserve ahead.',status:'pending'}
+{id:'d2',date:'2026-09-11',label:'Fri · Sept 11',theme:'Arambol → Vagator · Chapora Fort · Anjuna',activities:[
+{id:'d2a1',location:'Lotus Sutra Beachfront Resort Arambol Goa',time:'8:00 AM',title:'Breakfast at the resort',type:'food',duration:'~45 min',notes:'Start the exploration day with an easy breakfast.',status:'pending'},
+{id:'d2a2',location:'Vagator Beach Goa',time:'9:00 AM',title:'Drive to Vagator',type:'travel',duration:'~50 min',notes:'Use the Kia Seltos; keep the morning flexible for your daughter.',status:'pending'},
+{id:'d2a3',location:'Chapora Fort Vagator Goa',time:'10:00 AM',title:'Chapora Fort — Dil Chahta Hai',type:'sight',duration:'~1 hr',notes:'Climb the fort for the sea view and the famous viewpoint. Keep a close eye on your daughter near the edges.',status:'pending'},
+{id:'d2a4',location:'Vagator Beach Goa',time:'11:30 AM',title:'Vagator Beach break',type:'beach',duration:'~45 min',notes:'Short beach stop and a shaded drink/snack break.',status:'pending'},
+{id:'d2a5',location:'Anjuna Beach Goa',time:'12:30 PM',title:'Drive to Anjuna',type:'travel',duration:'~25 min',notes:'Keep the drive short and easy.',status:'pending'},
+{id:'d2a6',location:'Anjuna Beach Goa',time:'1:00 PM',title:'Lunch + Anjuna Beach',type:'food',duration:'~1.5 hr',notes:'Family-friendly meal followed by a relaxed beach visit. Do not plan water activities with a five-year-old.',status:'pending'},
+{id:'d2a7',location:'Arambol Goa',time:'3:00 PM',title:'Drive back to Arambol',type:'travel',duration:'~1 hr',notes:'Return before the evening gets tiring. Stop if your daughter needs a break.',status:'pending'},
+{id:'d2a8',location:'Lotus Sutra Beachfront Resort Arambol Goa',time:'4:30 PM',title:'Pool + resort rest',type:'relax',duration:'~1.5 hr',notes:'Recharge after the sightseeing loop.',status:'pending'},
+{id:'d2a9',location:'Arambol Beach Goa',time:'6:30 PM',title:'Sunset near the resort',type:'sunset',duration:'~45 min',notes:'A short, easy evening walk near Lotus Sutra.',status:'pending'},
+{id:'d2a10',location:'Arambol Beach Goa',time:'7:30 PM',title:'Dinner near the resort',type:'food',duration:'~1 hr',notes:'Keep dinner close to the hotel; no long evening drive.',status:'pending'}
 ]},
-{id:'d3',date:'2026-09-12',label:'Sat · Sept 12',theme:'Palolem · Resort · Margao Market',activities:[
-{id:'d3a1',location:'Palolem Beach Goa',time:'8:15 AM',title:'Drive to Palolem',type:'travel',duration:'~50 min',notes:'Parking ₹50-100 at main entrance.',status:'pending'},
-{id:'d3a2',location:'Palolem Beach Goa',time:'9:00 AM',title:'Palolem beach',type:'beach',duration:'~3.5 hr',notes:'Calmest, prettiest beach in Goa. Gentle slope, safe for kids.',status:'pending'},
-{id:'d3a3',location:'Jaipur Cafe Palolem Goa',time:'12:30 PM',title:'Lunch at Palolem',type:'food',duration:'~1 hr',notes:'Jaipur Café (veg, kid-friendly) or Magic Italy (shack, kid menu).',status:'pending'},
-{id:'d3a4',location:'La Grace Resort Goa',time:'1:30 PM',title:'Drive back to La Grace',type:'travel',duration:'~50 min',notes:'Kid naps in the car — perfect timing.',status:'pending'},
-{id:'d3a5',location:'La Grace Resort Goa',time:'2:30 PM',title:'Resort pool + rest',type:'relax',duration:'~2.5 hr',notes:'The recharge window. Pure unwind.',status:'pending'},
-{id:'d3a6',location:'Margao Municipal Market Goa',time:'5:45 PM',title:'Margao Municipal Market',type:'market',duration:'~1.5 hr',notes:'Cashews, Feni, chorizo (vacuum-packed), spices, bebinca. Cash preferred.',status:'pending'},
-{id:'d3a7',location:'Magans Restaurant Benaulim Goa',time:'7:30 PM',title:"Dinner at Magan's",type:'food',duration:'~1 hr',notes:'Benaulim. Classic Goan fish thali. Unbeatable local vibe.',status:'pending'},
-{id:'d3a8',location:'La Grace Resort Goa',time:'9:00 PM',title:'Resort beach road stroll',type:'relax',duration:'~15-20 min',notes:'Casual walk, ice cream, settle-in feel.',status:'pending'}
+{id:'d3',date:'2026-09-12',label:'Sat · Sept 12',theme:'Arambol → Panjim/Fontainhas → The Nautical Nest, Palolem',activities:[
+{id:'d3a1',location:'Lotus Sutra Beachfront Resort Arambol Goa',time:'8:00 AM',title:'Checkout from Lotus Sutra',type:'hotel',duration:'~30 min',notes:'Load the Kia Seltos and leave the luggage ready.',status:'pending'},
+{id:'d3a2',location:'Our Lady of the Immaculate Conception Church Panjim Goa',time:'11:00 AM',title:'Church of Our Lady of the Immaculate Conception',type:'sight',duration:'~30-40 min',notes:'A short central Panjim stop. Dress modestly and keep the visit comfortable for your daughter.',status:'pending'},
+{id:'d3a3',location:'Fontainhas Panjim Goa',time:'11:50 AM',title:'Fontainhas photo walk',type:'sight',duration:'~1 hr',notes:'Colorful Portuguese streets and family photo shoot. Keep the walk gentle for your daughter.',status:'pending'},
+{id:'d3a4',location:'Panjim Goa',time:'1:00 PM',title:'Lunch in Panjim',type:'food',duration:'~1 hr',notes:'Choose a clean, family-friendly restaurant near Fontainhas.',status:'pending'},
+{id:'d3a5',location:'Butterfly Conservatory of Goa Ponda',time:'2:15 PM',title:'Drive to Butterfly Conservatory of Goa',type:'travel',duration:'~1 hr',notes:'Short drive from Panjim. Keep a washroom break before entering.',status:'pending'},
+{id:'d3a6',location:'Butterfly Conservatory of Goa Ponda',time:'3:15 PM',title:'Butterfly Conservatory of Goa',type:'sight',duration:'~1 hr',notes:'A shaded, family-friendly visit. Your daughter can see butterflies in a calm garden setting.',status:'pending'},
+{id:'d3a7',location:'The Nautical Nest Palolem Goa',time:'4:30 PM',title:'Continue to The Nautical Nest, Palolem',type:'travel',duration:'~1 hr 45 min',notes:'Take a short break after the conservatory if your daughter feels tired.',status:'pending'},
+{id:'d3a8',location:'The Nautical Nest Palolem Goa',time:'6:30 PM',title:'Check-in at The Nautical Nest',type:'hotel',duration:'~45 min',notes:'Check-in on September 12 in South Goa.',status:'pending'},
+{id:'d3a9',location:'Palolem Beach Goa',time:'7:20 PM',title:'Quick Palolem beach walk',type:'sunset',duration:'~30 min',notes:'Only if your daughter is fresh; otherwise rest at the resort.',status:'pending'},
+{id:'d3a10',location:'Palolem Beach Goa',time:'7:30 PM',title:'Dinner near The Nautical Nest',type:'food',duration:'~1 hr',notes:'Keep dinner close to the stay and rest after the full exploration day.',status:'pending'}
 ]},
-{id:'d4',date:'2026-09-13',label:'Sun · Sept 13',theme:'Light day · Bus home',activities:[
-{id:'d4a1',location:'Colva Beach Goa',time:'8:30 AM',title:'Closest beach + last swim',type:'beach',duration:'~1 hr',notes:'One last sand play for your daughter.',status:'pending'},
-{id:'d4a2',location:'La Grace Resort Goa',time:'10:00 AM',title:'Resort pool / Colva walk',type:'relax',duration:'~2.5 hr',notes:'Chill mode. Pack in parallel if needed.',status:'pending'},
-{id:'d4a3',location:'La Grace Resort Goa',time:'12:30 PM',title:'Brunch',type:'food',duration:'~1 hr',notes:'Light meal — you want to eat again before the bus.',status:'pending'},
-{id:'d4a4',location:'La Grace Resort Goa',time:'3:00 PM',title:'Collect luggage + checkout',type:'travel',notes:'Request late checkout (noon-3 PM) when checking in.',status:'pending'},
-{id:'d4a5',location:'Madgaon Goa',time:'5:30 PM',title:'Thar drop-off',type:'travel',duration:'~15 min',notes:'Confirm with rental company — many allow stand/airport drop.',status:'pending'},
-{id:'d4a6',location:'Madgaon KTC Bus Stand Goa',time:'6:00 PM',title:'Cab to Madgaon bus stand',type:'travel',duration:'~15-20 min',notes:'15-20 min from Colva belt. ₹350-500.',status:'pending'},
-{id:'d4a7',location:'Madgaon KTC Bus Stand Goa',time:'6:30 PM',title:'Early dinner near bus stand',type:'food',duration:'~1 hr',notes:'South Indian / veg thali joints nearby. Avoid heavy food before bus.',status:'pending'},
-{id:'d4a8',location:'Madgaon KTC Bus Stand Goa',time:'9:00 PM',title:'Bus departure',type:'travel',notes:'Most sleeper buses board 8:30-9:30 PM. Arrive Pune ~9:30 AM Mon.',status:'pending'}
+{id:'d4',date:'2026-09-13',label:'Sun · Sept 13',theme:'Palolem · Relax · Prepare for Pune',activities:[
+{id:'d4a1',location:'The Nautical Nest Palolem Goa',time:'8:00 AM',title:'Breakfast + slow morning',type:'food',duration:'~1 hr',notes:'No need to wake early after the travel day.',status:'pending'},
+{id:'d4a2',location:'Palolem Beach Goa',time:'9:30 AM',title:'Palolem Beach time',type:'beach',duration:'~2 hr',notes:'Short and relaxed beach visit.',status:'pending'},
+{id:'d4a3',location:'The Nautical Nest Palolem Goa',time:'12:00 PM',title:'Lunch + pool/rest',type:'relax',duration:'~2.5 hr',notes:'Pool, lunch, and packing time. Keep the afternoon low-key.',status:'pending'},
+{id:'d4a4',location:'The Nautical Nest Palolem Goa',time:'3:30 PM',title:'Nearby market stroll',type:'market',duration:'~40 min',notes:'A small family walk for shopping and snacks; do not travel far.',status:'pending'},
+{id:'d4a5',location:'Palolem Beach Goa',time:'6:00 PM',title:'Final Palolem sunset',type:'sunset',duration:'~45 min',notes:'Easy beach walk near the stay.',status:'pending'},
+{id:'d4a6',location:'The Nautical Nest Palolem Goa',time:'7:00 PM',title:'Dinner + pack for Pune',type:'food',duration:'~1.5 hr',notes:'Pack after dinner and keep the car ready for an early departure.',status:'pending'}
+]},
+{id:'d5',date:'2026-09-14',label:'Mon · Sept 14',theme:'South Goa → Pune',activities:[
+{id:'d5a1',location:'The Nautical Nest Palolem Goa',time:'6:00 AM',title:'Checkout + leave for Pune',type:'travel',duration:'~9-10 hr',notes:'Choose 6:00, 6:30, or 7:00 AM depending on how fresh your daughter feels.',status:'pending'},
+{id:'d5a2',location:'Pune Belgaum highway',time:'9:00 AM',title:'Breakfast + rest break',type:'food',duration:'~30 min',notes:'Stop for a proper break, washroom, and a short walk.',status:'pending'},
+{id:'d5a3',location:'Kolhapur Pune highway',time:'12:30 PM',title:'Lunch break',type:'food',duration:'~45 min',notes:'Keep lunch simple and allow your daughter to move around.',status:'pending'},
+{id:'d5a4',location:'Pune Maharashtra',time:'3:30 PM',title:'Short afternoon break',type:'food',duration:'~20 min',notes:'Water, washroom, and a final stretch before Pune.',status:'pending'},
+{id:'d5a5',location:'Pune Maharashtra',time:'4:30 PM',title:'Reach Pune',type:'travel',duration:'~1 hr',notes:'Expected arrival between 4:30 and 6:00 PM, depending on traffic and departure time.',status:'pending'}
 ]}
 ]};
 
@@ -566,7 +570,7 @@ let lightboxPhotos=[];
 let lightboxIndex=0;
 let photoDB=null;
 const PHOTO_DB_NAME='goaTripPhotos';
-const DRIVE_CONFIG={clientId:localStorage.getItem('goaDriveClientId')||'432716317465-drqg6e6g6gbpnh953rkqfvj8su58bjvv.apps.googleusercontent.com',folderName:'Goa Family Trip · Sept 10–13, 2026',scope:'https://www.googleapis.com/auth/drive.file'};
+const DRIVE_CONFIG={clientId:localStorage.getItem('goaDriveClientId')||'432716317465-drqg6e6g6gbpnh953rkqfvj8su58bjvv.apps.googleusercontent.com',folderName:'Goa Family Trip · Sept 10–14, 2026',scope:'https://www.googleapis.com/auth/drive.file'};
 localStorage.setItem('goaDriveClientId',DRIVE_CONFIG.clientId);
 let driveAccessToken=localStorage.getItem('goaDriveAccessToken')||'';
 let driveRefreshToken='';
@@ -646,7 +650,7 @@ return changed;
 function loadState(){
 try{
 const s=localStorage.getItem(STORAGE_KEY);
-if(s){const p=JSON.parse(s);if(p&&Array.isArray(p.days)&&p.days.some(day=>Array.isArray(day.activities)&&day.activities.length)){if(migrateState(p))saveState();return p;}}
+if(s){const p=JSON.parse(s);if(p&&p.planVersion===2&&Array.isArray(p.days)&&p.days.some(day=>Array.isArray(day.activities)&&day.activities.length)){if(migrateState(p))saveState();return p;}const fresh=JSON.parse(JSON.stringify(INITIAL));if(p&&typeof p.budget==='number')fresh.budget=p.budget;if(p&&Array.isArray(p.expenses))fresh.expenses=p.expenses;localStorage.setItem(STORAGE_KEY,JSON.stringify(fresh));return fresh;}
 }catch(e){console.warn('Load failed',e)}
 return JSON.parse(JSON.stringify(INITIAL));
 }
@@ -672,7 +676,7 @@ return h*60+mm;
 function mapsHref(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);}
 const EXPENSE_CATEGORIES={transport:{label:'Transport',icon:'\u{1F68C}',color:'#118AB2',bg:'#D6F0F8'},stay:{label:'Stay',icon:'\u{1F3E8}',color:'#7209B7',bg:'#EBD9FF'},food:{label:'Food',icon:'\u{1F374}',color:'#EF476F',bg:'#FCD9E0'},activities:{label:'Activities',icon:'\u{1F3AB}',color:'#8D6E63',bg:'#E8DDD3'},shopping:{label:'Shopping',icon:'\u{1F6CD}\uFE0F',color:'#D62828',bg:'#FBD9D9'},misc:{label:'Misc',icon:'\u{1F4E6}',color:'#5C6B7A',bg:'#E8DDD3'}};
 
-const INITIAL_EXPENSES=[{id:'e1',dayId:'d1',amount:1500,category:'transport',description:'Bus tickets (Pune ↔ Goa, round trip)',status:'paid'},{id:'e2',dayId:'d1',amount:10000,category:'transport',description:'Thar rental (3-4 days)',status:'pending'},{id:'e3',dayId:'d1',amount:4500,category:'stay',description:'The Falcon Goa, Candolim (1 night)',status:'paid'},{id:'e4',dayId:'d2',amount:9500,category:'stay',description:'La Grace Resort, South Goa (2 nights)',status:'paid'}];
+const INITIAL_EXPENSES=[];
 
 function formatINR(n){if(n>=100000)return '\u20B9'+(n/100000).toFixed(1)+'L';if(n>=1000)return '\u20B9'+(n/1000).toFixed(n>=10000?0:1)+'k';return '\u20B9'+n;}
 function formatINRFull(n){return '\u20B9'+n.toLocaleString('en-IN');}
